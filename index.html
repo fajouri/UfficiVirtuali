@@ -8,11 +8,11 @@
     body {
       font-family: 'Roboto', sans-serif;
       margin: 0;
-      background-color: #f4f7fa;
+      background: linear-gradient(to right, #e6f0fa, #f7fafd);
       color: #333;
     }
     header {
-      background-color: #0077cc;
+      background-color: #003366;
       color: white;
       padding: 2rem;
       text-align: center;
@@ -26,7 +26,7 @@
     }
     .section {
       padding: 2rem;
-      max-width: 1000px;
+      max-width: 1200px;
       margin: auto;
     }
     .pricing {
@@ -35,9 +35,13 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       padding: 2rem;
       margin-top: 2rem;
+      transition: transform 0.3s;
+    }
+    .pricing:hover {
+      transform: translateY(-5px);
     }
     .pricing h2 {
-      color: #0077cc;
+      color: #003366;
     }
     .features {
       list-style: none;
@@ -52,7 +56,7 @@
       margin-top: 2rem;
     }
     .cta button {
-      background-color: #0077cc;
+      background-color: #003366;
       color: white;
       border: none;
       padding: 1rem 2rem;
@@ -62,7 +66,36 @@
       transition: background 0.3s;
     }
     .cta button:hover {
-      background-color: #005fa3;
+      background-color: #001f4d;
+    }
+    form {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 2rem auto;
+    }
+    form h3 {
+      color: #003366;
+      margin-bottom: 1rem;
+    }
+    form input, form select, form button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    form button {
+      background-color: #003366;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    form button:hover {
+      background-color: #001f4d;
     }
     footer {
       text-align: center;
@@ -70,63 +103,87 @@
       font-size: 0.9rem;
       color: #666;
     }
-    img.banner {
-      width: 100%;
-      border-bottom: 5px solid #0077cc;
-    }
   </style>
 </head>
 <body>
   <header>
     <h1>Uffici Virtuali a Napoli</h1>
-    <p>Professionalità, affidabilità e risparmio con sede legale inclusa</p>
-  </header>  <img class="banner" src="https://source.unsplash.com/1600x400/?office,workspace" alt="Uffici Virtuali">  <div class="section">
+    <p>Soluzioni affidabili e professionali per startup e imprese moderne</p>
+  </header>  <div class="section">
     <div class="pricing">
-      <h2>Il nostro piano: EUR 40/mese</h2>
+      <h2>Basic - EUR 35/mese</h2>
       <ul class="features">
         <li>Domiciliazione sede legale a Napoli</li>
         <li>Casella postale e ricezione corrispondenza</li>
-        <li>Avviso e inoltro email della posta ricevuta</li>
+        <li>Notifica via email della posta ricevuta</li>
+        <li>Supporto clienti via email</li>
       </ul>
       <div class="cta">
-        <button onclick="iscriviti()">Iscriviti Ora</button>
+        <button onclick="selezionaPiano('Basic')">Scegli Basic</button>
       </div>
     </div><div class="pricing">
-  <h2>Servizi simili: Centro Il Faro - EUR 49/mese</h2>
+  <h2>Full - EUR 55/mese</h2>
   <ul class="features">
-    <li>Domiciliazione sede legale</li>
-    <li>Casella postale esclusiva</li>
-    <li>Ricezione della posta</li>
-    <li>Accesso a sale riunioni disponibile</li>
+    <li>Tutti i servizi del Basic</li>
+    <li>Accesso a sale riunioni 4h/mese</li>
+    <li>Numero telefonico dedicato</li>
+    <li>Gestione e inoltro della corrispondenza</li>
+    <li>Assistenza clienti telefonica</li>
   </ul>
+  <div class="cta">
+    <button onclick="selezionaPiano('Full')">Scegli Full</button>
+  </div>
 </div>
 
 <div class="pricing">
-  <h2>Servizi simili: Centro Uffici Napoli - EUR 49/mese</h2>
+  <h2>Premium - EUR 70/mese</h2>
   <ul class="features">
-    <li>Domiciliazione sede legale</li>
-    <li>Ricezione e gestione corrispondenza</li>
-    <li>Accesso a uffici e sale su prenotazione</li>
-    <li>Supporto amministrativo disponibile</li>
-  </ul>
-</div>
-
-<div class="pricing">
-  <h2>Servizi simili: Coworking Company - EUR 49/mese</h2>
-  <ul class="features">
-    <li>Domiciliazione legale</li>
-    <li>Casella postale esclusiva</li>
-    <li>Accesso a spazi condivisi e sale riunioni</li>
+    <li>Tutti i servizi del Full</li>
+    <li>Accesso illimitato a sale riunioni (su prenotazione)</li>
+    <li>Reception personalizzata</li>
+    <li>Servizio di scansione e archiviazione digitale</li>
     <li>Supporto eventi e networking</li>
   </ul>
+  <div class="cta">
+    <button onclick="selezionaPiano('Premium')">Scegli Premium</button>
+  </div>
 </div>
+
+<form id="formContatto">
+  <h3>Iscriviti al tuo piano</h3>
+  <select name="piano" required>
+    <option value="">Seleziona un piano</option>
+    <option value="Basic">Basic - EUR 35</option>
+    <option value="Full">Full - EUR 55</option>
+    <option value="Premium">Premium - EUR 70</option>
+  </select>
+  <input type="text" name="nome" placeholder="Il tuo nome" required>
+  <input type="email" name="email" placeholder="La tua email" required>
+  <input type="tel" name="telefono" placeholder="Il tuo numero di telefono" required>
+  <button type="submit">Invia richiesta</button>
+</form>
 
   </div>  <footer>
     Contattaci: <strong>+39 349 380 6329</strong> | <strong>uffici@ArpaySolutions.com</strong><br>
     &copy; 2025 Uffici Virtuali Napoli. Tutti i diritti riservati.
   </footer>  <script>
-    function iscriviti() {
-      alert('Grazie per il tuo interesse! Sarai contattato a breve.');
+    function selezionaPiano(piano) {
+      document.querySelector('select[name="piano"]').value = piano;
+      window.scrollTo({ top: document.getElementById('formContatto').offsetTop, behavior: 'smooth' });
     }
+
+    document.getElementById('formContatto').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        piano: form.piano.value,
+        nome: form.nome.value,
+        email: form.email.value,
+        telefono: form.telefono.value
+      };
+      console.log('Richiesta inviata:', data);
+      alert('Grazie ' + data.nome + '! La tua richiesta per il piano ' + data.piano + ' è stata ricevuta.');
+      form.reset();
+    });
   </script></body>
 </html>
